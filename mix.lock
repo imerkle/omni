@@ -1,0 +1,8 @@
+%{
+  "base58check": {:git, "https://github.com/imerkle/base58check.git", "073386b67751060393851be142eba5d73adc1623", []},
+  "bip32": {:git, "https://github.com/imerkle/bip32.git", "49febbfbd53a84535f9dc790ec5c96f14ec59550", []},
+  "libsecp256k1": {:hex, :libsecp256k1, "0.1.10", "d27495e2b9851c7765129b76c53b60f5e275bd6ff68292c50536bf6b8d091a4d", [:make, :mix], [{:mix_erlang_tasks, "0.1.0", [hex: :mix_erlang_tasks, repo: "hexpm", optional: false]}], "hexpm"},
+  "mix_erlang_tasks": {:hex, :mix_erlang_tasks, "0.1.0", "36819fec60b80689eb1380938675af215565a89320a9e29c72c70d97512e4649", [:mix], [], "hexpm"},
+  "mnemonic": {:git, "https://github.com/imerkle/mnemonic.git", "8445f12693ee88a3024e83805b9427fbc0b411e7", []},
+  "pbkdf2_elixir": {:hex, :pbkdf2_elixir, "0.12.3", "6706a148809a29c306062862c803406e88f048277f6e85b68faf73291e820b84", [:mix], [], "hexpm"},
+}
