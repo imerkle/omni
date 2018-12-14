@@ -1,5 +1,8 @@
 # Omni
 
+[![Build Status](https://travis-ci.com/imerkle/omni.svg?branch=master)](https://travis-ci.com/imerkle/omni)
+
+
 **TODO: Add description**
 
 ## Installation
