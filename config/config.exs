@@ -33,7 +33,8 @@ config :pbkdf2_elixir, :rounds, 1
 
 config :omni,
     coins: 
-        %{"BTC" => %{
+        %{
+        "BTC" => %{
             "api" => "https://insight.bitpay.com/api",
             "name" => "Bitcoin",
             "code" => 0,
@@ -47,4 +48,45 @@ config :omni,
                     "public" => <<0x00>>,
                 }
             }
-        }}    
+        },
+        "LTC" => %{
+            "api" => "https://insight.litecore.io/api",
+            "name" => "Litecoin",
+            "code" => 2,
+            "decimals" => 8,
+            "fee_label" => "LTC",
+            "base" => false,
+            "network" => %{
+                "versions" => %{
+                    "private" => <<0xb0>>,
+                    "public" => <<0x30>>,
+                }
+            }
+        },
+        "DASH" => %{
+            "api" => "https://insight.dash.org/api",
+            "name" => "Dash",
+            "code" => 5,
+            "decimals" => 8,
+            "fee_label" => "DASH",
+            "base" => false,
+            "network" => %{
+                "versions" => %{
+                    "private" => <<0xcc>>,
+                    "public" => <<0x4c>>,
+                }
+            }
+        },
+        "ETH" => %{
+            "api" => "https://api.etherscan.io/api",
+            "api_tokens" => "https://tokenbalance.herokuapp.com/api/balance",
+            "rpc" => "https://mainnet.infura.io/v3/2294f3b338ad4524aa9186012810e412",
+            "name" => "Ethereum",
+            "code" => 60,
+            "decimals" => 18,
+            "fee_label" => "gwei",
+            "base" => true,
+            "dual_fee" => true,
+            "forks" => [],
+        }
+    }

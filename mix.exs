@@ -25,6 +25,7 @@ defmodule Omni.MixProject do
       {:mnemonic, git: "https://github.com/imerkle/mnemonic.git"},
       {:bip32, git: "https://github.com/imerkle/bip32.git"},
       {:base58check, git: "https://github.com/imerkle/base58check.git"},
+      {:keccakf1600, "~> 2.0.0", hex: :keccakf1600_orig},
     ]
   end
 end
