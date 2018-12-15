@@ -28,7 +28,7 @@ defmodule Omni do
   
   defp get_root_node(seed, rel, base) do
     root_node = case base do
-      n when n in ["BTC", "ETH"] -> Bip32.Node.generate_master_node(seed)
+      n when n in ["BTC", "ETH", "VET"] -> Bip32.Node.generate_master_node(seed)
     end
   end
   defp get_child_node(root_node, account, change, index, rel) do
@@ -41,7 +41,7 @@ defmodule Omni do
       "BTC" -> child_node.public_key
                 |> Bip32.Utils.hash160()
                 |> Base58Check.encode58check(@coins[rel]["network"]["versions"]["public"])
-      "ETH" -> <<4::size(8), key::binary-size(64)>> = child_node.public_key_uncompressed |> Bip32.Utils.pack_h()
+      n when n in ["ETH", "VET"] -> <<4::size(8), key::binary-size(64)>> = child_node.public_key_uncompressed |> Bip32.Utils.pack_h()
                <<_::binary-size(12), eth_address::binary-size(20)>> = key |> keccak256()
                 
                e_a = eth_address |> Base.encode16()
@@ -51,11 +51,21 @@ defmodule Omni do
     wif = case base do
       "BTC" -> child_node.private_key
                 |> Base58Check.encode58check(@coins[rel]["network"]["versions"]["private"], true)
+      n when n in ["ETH", "VET"] -> "0x" <> child_node.private_key
       _-> child_node.private_key
     end
-    
-    public_key = child_node.public_key
-    {wif, address, public_key }
+
+    public_key = case base do
+      n when n in ["ETH", "VET"] -> "0x" <> child_node.public_key
+      _-> child_node.public_key
+    end
+
+    private_key = case base do
+      n when n in ["ETH", "VET"] -> "0x" <> child_node.private_key
+      _-> child_node.private_key
+    end
+
+    {wif, private_key, public_key, address}
   end
   defp keccak256(data), do: :keccakf1600.hash(:sha3_256, data)
 end

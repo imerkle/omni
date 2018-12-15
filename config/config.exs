@@ -40,7 +40,6 @@ config :omni,
             "code" => 0,
             "decimals" => 8,
             "forks" => ["LTC", "DASH"],
-            "fee_label" => "sats",
             "base" => true,
             "network" => %{
                 "versions" => %{
@@ -54,7 +53,6 @@ config :omni,
             "name" => "Litecoin",
             "code" => 2,
             "decimals" => 8,
-            "fee_label" => "LTC",
             "base" => false,
             "network" => %{
                 "versions" => %{
@@ -68,7 +66,6 @@ config :omni,
             "name" => "Dash",
             "code" => 5,
             "decimals" => 8,
-            "fee_label" => "DASH",
             "base" => false,
             "network" => %{
                 "versions" => %{
@@ -84,9 +81,16 @@ config :omni,
             "name" => "Ethereum",
             "code" => 60,
             "decimals" => 18,
-            "fee_label" => "gwei",
             "base" => true,
-            "dual_fee" => true,
+            "forks" => [],
+        },
+        "VET" => %{
+            "api" => "https://veforge.com/api",
+            "api_tokens" => "https://tokenbalance.herokuapp.com/api/balance",
+            "name" => "Vechain",
+            "code" => 818,
+            "decimals" => 18,
+            "base" => true,
             "forks" => [],
         }
     }
