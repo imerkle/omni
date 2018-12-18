@@ -38,18 +38,35 @@ defmodule OmniTest do
       "public_key" => "0x029f3e29b4fb71f2e732dfdac1d17cf75893136164973bf5edee6753f4065bf284",      
       "rel" => "VET",
       "base" => "VET",
-    }, 
+    },
+    %{
+      "address" => "EOS5ZXHpkLdY9qqYLEL5D5VPwZop9BrF6pCMT4QauJJzkrA7xitfA",
+      "wif" => "5K7V5He9abzwEavLTEVeWj4U9xEtVdnrGD4jc5piNvmbAz45mcS",
+      "public_key" => "EOS5ZXHpkLdY9qqYLEL5D5VPwZop9BrF6pCMT4QauJJzkrA7xitfA",      
+      "rel" => "EOS",
+      "base" => "EOS",
+    },
   ]
 
+
+    """
+    %{
+      "address" => "AShDKgLSuCjGZr8Fs5SRLSYvmcSV7S4zwX",
+      "wif" => "KwmYnVNazav2fWiFjTaU4SdK9bVsg1J1FQcaAkqYVa196XifCrp2",
+      #1060eeb4ed10c63680cf9570fc7c5fa2c9d911f33f60f379ce7107f2618e9651 privatekey
+      "public_key" => "03f7f87c8988579de62bd416958e8c27da8e7948a2639c1027eb37e386f10badcf",      
+      "rel" => "NEO",
+      "base" => "NEO",
+    },
+    """  
   Enum.map(@wallets, fn x ->
     rel = x["rel"]
     base = x["base"]
     test "Generate Keys #{rel}" do
-      { wif, _private_key, public_key, address } = Omni.generate_seed(@mnemonic, "", %{rel: unquote(rel), base: unquote(base)})
-      
-      assert address |> String.upcase() == unquote(x["address"])  |> String.upcase()
-      assert public_key |> String.upcase() == unquote(x["public_key"])  |> String.upcase()
+      { wif, private_key, public_key, address } = Omni.generate_seed(@mnemonic, "", %{rel: unquote(rel), base: unquote(base)})
       assert wif |> String.upcase() == unquote(x["wif"])  |> String.upcase()
+      assert public_key |> String.upcase() == unquote(x["public_key"])  |> String.upcase()
+      assert address |> String.upcase() == unquote(x["address"])  |> String.upcase()
     end
   end)
 

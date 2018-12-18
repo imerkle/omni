@@ -92,5 +92,36 @@ config :omni,
             "decimals" => 18,
             "base" => true,
             "forks" => [],
+        },
+        "EOS" => %{
+            "api" => "https://api.neoscan.io/api/main_net/v1",
+            "name" => "EOS",
+            "code" => 194,
+            "decimals" => 0,
+            "base" => true,
+            "forks" => [],
+            "network" => %{
+                "versions" => %{
+                    "private" => <<0x80>>,
+                    "public" => <<0x00>>,
+                }
+            }            
         }
     }
+
+        """
+        "NEO" => %{
+            "api" => "https://api.neoscan.io/api/main_net/v1",
+            "name" => "Neo",
+            "code" => 888,
+            "decimals" => 0,
+            "base" => true,
+            "forks" => [],
+            "network" => %{
+                "versions" => %{
+                    "private" => <<0x80>>,
+                    "public" => <<0x00>>,
+                }
+            }            
+        },
+        """    

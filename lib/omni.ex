@@ -28,7 +28,8 @@ defmodule Omni do
   
   defp get_root_node(seed, rel, base) do
     root_node = case base do
-      n when n in ["BTC", "ETH", "VET"] -> Bip32.Node.generate_master_node(seed)
+      n when n in ["BTC", "ETH", "VET", "EOS"] -> Bip32.Node.generate_master_node(seed)
+      "NEO" -> Bip32.Node.generate_master_node(seed, :secp256r1, "Nist256p1 seed")
     end
   end
   defp get_child_node(root_node, account, change, index, rel) do
@@ -38,7 +39,7 @@ defmodule Omni do
   end
   defp get_wallet(child_node, rel, base) do
     address = case base do
-      "BTC" -> child_node.public_key
+      n when n in ["BTC"] -> child_node.public_key
                 |> Bip32.Utils.hash160()
                 |> Base58Check.encode58check(@coins[rel]["network"]["versions"]["public"])
       n when n in ["ETH", "VET"] -> <<4::size(8), key::binary-size(64)>> = child_node.public_key_uncompressed |> Bip32.Utils.pack_h()
@@ -46,17 +47,25 @@ defmodule Omni do
                 
                e_a = eth_address |> Base.encode16()
                "0x" <> e_a
+      "EOS" -> p = child_node.public_key
+                |> Base58Check.encode58check("", false, "ripemd160")
+                "EOS" <> p
+      "NEO" -> child_node.public_key 
+                |> Omni.Neo.Crypto.get_address()
+      _-> child_node.public_key
     end
 
     wif = case base do
-      "BTC" -> child_node.private_key
+      n when n in ["BTC", "NEO"] -> child_node.private_key
                 |> Base58Check.encode58check(@coins[rel]["network"]["versions"]["private"], true)
       n when n in ["ETH", "VET"] -> "0x" <> child_node.private_key
+      "EOS" -> child_node.private_key
+                |> Base58Check.encode58check(@coins[rel]["network"]["versions"]["private"], false)
       _-> child_node.private_key
     end
-
     public_key = case base do
       n when n in ["ETH", "VET"] -> "0x" <> child_node.public_key
+      "EOS" -> address
       _-> child_node.public_key
     end
 
