@@ -46,10 +46,6 @@ defmodule OmniTest do
       "rel" => "EOS",
       "base" => "EOS",
     },
-  ]
-
-
-    """
     %{
       "address" => "AShDKgLSuCjGZr8Fs5SRLSYvmcSV7S4zwX",
       "wif" => "KwmYnVNazav2fWiFjTaU4SdK9bVsg1J1FQcaAkqYVa196XifCrp2",
@@ -57,8 +53,9 @@ defmodule OmniTest do
       "public_key" => "03f7f87c8988579de62bd416958e8c27da8e7948a2639c1027eb37e386f10badcf",      
       "rel" => "NEO",
       "base" => "NEO",
-    },
-    """  
+    },    
+  ]
+
   Enum.map(@wallets, fn x ->
     rel = x["rel"]
     base = x["base"]

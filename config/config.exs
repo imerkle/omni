@@ -106,10 +106,7 @@ config :omni,
                     "public" => <<0x00>>,
                 }
             }            
-        }
-    }
-
-        """
+        },
         "NEO" => %{
             "api" => "https://api.neoscan.io/api/main_net/v1",
             "name" => "Neo",
@@ -123,5 +120,5 @@ config :omni,
                     "public" => <<0x00>>,
                 }
             }            
-        },
-        """    
+        },        
+    }

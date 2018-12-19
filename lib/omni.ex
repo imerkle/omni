@@ -50,8 +50,8 @@ defmodule Omni do
       "EOS" -> p = child_node.public_key
                 |> Base58Check.encode58check("", false, "ripemd160")
                 "EOS" <> p
-      "NEO" -> child_node.public_key 
-                |> Omni.Neo.Crypto.get_address()
+      "NEO" ->  child_node.public_key 
+                  |> Omni.Neo.Crypto.get_address()
       _-> child_node.public_key
     end
 
