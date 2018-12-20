@@ -49,11 +49,17 @@ defmodule OmniTest do
     %{
       "address" => "AShDKgLSuCjGZr8Fs5SRLSYvmcSV7S4zwX",
       "wif" => "KwmYnVNazav2fWiFjTaU4SdK9bVsg1J1FQcaAkqYVa196XifCrp2",
-      #1060eeb4ed10c63680cf9570fc7c5fa2c9d911f33f60f379ce7107f2618e9651 privatekey
       "public_key" => "03f7f87c8988579de62bd416958e8c27da8e7948a2639c1027eb37e386f10badcf",      
       "rel" => "NEO",
       "base" => "NEO",
-    },    
+    },
+    %{
+      "address" => "rPphbLGemSQv4De1LUHYq6tupBkrrZUxNe",
+      "wif" => "f8b9412446e9328262cc158f03472b6450c3cf19b9db5c3975c15a84f3189123",
+      "public_key" => "031f5b18658ba210dca0fe2669b2dd51b9ad12964efbcfa4a56774e4375e968263",      
+      "rel" => "XRP",
+      "base" => "XRP",
+    },
   ]
 
   Enum.map(@wallets, fn x ->

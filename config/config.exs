@@ -120,5 +120,15 @@ config :omni,
                     "public" => <<0x00>>,
                 }
             }            
+        },
+        "XRP" => %{
+            "name" => "Ripple",
+            "api" => "https://xrpnode.herokuapp.com/api",
+            "rpc" => "http://s1.ripple.com:51234",
+            "code" => 144,
+            "decimals" => 6,
+            "base" => true,
+            "forks" => [],
+            "node" => "main",
         },        
     }

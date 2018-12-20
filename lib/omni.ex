@@ -28,8 +28,8 @@ defmodule Omni do
   
   defp get_root_node(seed, rel, base) do
     root_node = case base do
-      n when n in ["BTC", "ETH", "VET", "EOS"] -> Bip32.Node.generate_master_node(seed)
       "NEO" -> Bip32.Node.generate_master_node(seed, :secp256r1, "Nist256p1 seed")
+      _ -> Bip32.Node.generate_master_node(seed)
     end
   end
   defp get_child_node(root_node, account, change, index, rel) do
@@ -52,6 +52,9 @@ defmodule Omni do
                 "EOS" <> p
       "NEO" ->  child_node.public_key 
                   |> Omni.Neo.Crypto.get_address()
+      "XRP" ->  child_node.public_key 
+                  |> Bip32.Utils.hash160()
+                  |> Base58Check.encode58check(0, false, "256x2", "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz")
       _-> child_node.public_key
     end
 

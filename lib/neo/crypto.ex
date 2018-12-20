@@ -15,6 +15,6 @@ defmodule Omni.Neo.Crypto do
       <<checksum::binary-size(8), _rest::binary>> =  @address_version <> script_hash |> Bip32.Utils.sha256() |> Bip32.Utils.sha256()
       @address_version <> script_hash <> checksum
       |> Bip32.Utils.pack_h()
-      |> Base58Check.encode58()
+      |> Base58Check.encode58("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
     end
 end

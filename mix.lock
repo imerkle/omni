@@ -1,5 +1,5 @@
 %{
-  "base58check": {:git, "https://github.com/imerkle/base58check.git", "f5306efe5ed3e249a49bb5bffa2ffd3b6e63f398", []},
+  "base58check": {:git, "https://github.com/imerkle/base58check.git", "8af2d7fb241f34b548b51ec7aa68cfe0e05ee003", []},
   "bip32": {:git, "https://github.com/imerkle/bip32.git", "c687dd61f69f2a0900999b1dda75be65e5e24abd", []},
   "keccakf1600": {:hex, :keccakf1600_orig, "2.0.0", "0a7217ddb3ee8220d449bbf7575ec39d4e967099f220a91e3dfca4dbaef91963", [:rebar3], [], "hexpm"},
   "mnemonic": {:git, "https://github.com/imerkle/mnemonic.git", "8445f12693ee88a3024e83805b9427fbc0b411e7", []},
