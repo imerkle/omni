@@ -13,12 +13,11 @@ defmodule Omni do
 
   """
   @coins Application.get_env(:omni, :coins)
-  def generate_seed(mnemonic \\ "", passphrase \\ "", options) do
+  def generate_seed(mnemonic \\ "", passphrase \\ "") do
     mnemonic = if (mnemonic != ""), do: mnemonic, else: Mnemonic.generate(256)
     seed = Mnemonic.mnemonic_to_seed(mnemonic, passphrase)
-    generate_pkey(options.rel, options.base, seed)
   end
-  defp generate_pkey(rel, base, seed, account \\ 0, change \\ 0, index \\ 0) do
+  def generate_keys(rel, base, seed, account \\ 0, change \\ 0, index \\ 0) do
     #root node is master derived from mnemonic -> seed -> root node
     root_node = get_root_node(seed, rel, base)
     child_node = get_child_node(root_node, account, change, index, rel)

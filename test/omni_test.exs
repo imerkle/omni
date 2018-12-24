@@ -3,6 +3,9 @@ defmodule OmniTest do
   #doctest Omni
 
   @mnemonic "connect ritual news sand rapid scale behind swamp damp brief explain ankle"
+  @seed_hex "27a718f64d256afa9d95a1d561f059f8a2488c87b2ff56eaeee1ff8dac465804a54400f70205ee698c1b3e2cad4c5b8117f892878dea6d585c6db7e42ab3dda1"
+  #CXMZDVGCVALGB9AZIQMKFAJY9YZ9PGMEVKVAXOSXRLV9HKJTMRSQDZZNECQCCYKAAJXJJZUMNPXTECKEK iota
+  #2076781702711090825446814413200646823316344226182437528247761865016157475258495735463461605228517154935066745100925414320245433705442593647465697148919201 iota
   @wallets [
     %{
       "address" => "1JN2GamM8pXmJvSRKxiRBppf9Zgur6Ze7L",
@@ -66,7 +69,9 @@ defmodule OmniTest do
     rel = x["rel"]
     base = x["base"]
     test "Generate Keys #{rel}" do
-      { wif, private_key, public_key, address } = Omni.generate_seed(@mnemonic, "", %{rel: unquote(rel), base: unquote(base)})
+      seed = Omni.generate_seed(@mnemonic, "")
+      assert seed == @seed_hex
+      { wif, private_key, public_key, address } = Omni.generate_keys(unquote(rel), unquote(base), seed)
       assert wif |> String.upcase() == unquote(x["wif"])  |> String.upcase()
       assert public_key |> String.upcase() == unquote(x["public_key"])  |> String.upcase()
       assert address |> String.upcase() == unquote(x["address"])  |> String.upcase()
@@ -74,3 +79,4 @@ defmodule OmniTest do
   end)
 
 end
+ 
